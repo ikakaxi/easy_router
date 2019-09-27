@@ -1,0 +1,17 @@
+# Read about `build.yaml` at https://pub.flutter-io.cn/packages/build_config
+# import指定了builder的位置，
+# builder_factories指定了builder的具体调用，
+# build_extensions指定了输入输入文件的格式匹配，
+builders:
+  param_builder:
+    import: 'package:easy_router/src/builder.dart'
+    builder_factories: ['paramBuilder']
+    build_extensions: { '.dart': ['.g.dart'] }
+    auto_apply: root_package
+    build_to: source
+  router_builder:
+    import: 'package:easy_router/src/builder.dart'
+    builder_factories: ['routerBuilder']
+    build_extensions: { '.dart': ['.g.dart'] }
+    auto_apply: root_package
+    build_to: source
