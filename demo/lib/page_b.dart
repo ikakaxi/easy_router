@@ -3,12 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:easy_router/easy_router.dart';
 
-@EasyRoutePathAnnotation("pageB")
+@EasyRoutePathAnnotation("pageB", false)
 class PageB extends StatelessWidget {
-  final EasyRouteParam param;
-
-  PageB(this.param);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +13,7 @@ class PageB extends StatelessWidget {
       ),
       body: Container(
         alignment: Alignment.center,
-        child: Text("param:${param["key"]}"),
+        child: Text("no param"),
       ),
     );
   }

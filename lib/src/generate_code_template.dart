@@ -22,25 +22,31 @@ class EasyRouter {
     return _instance;
   }
 
-  final Map<String, dynamic> _routeMap = {{{routeMap}}};
+  final Map<String, Pair<dynamic, bool>> _routeMap = {{{routeMap}}};
 
-  Widget router(String url, Map<String, dynamic> params) {
+  Widget getWidget(String url, {Map<String, dynamic> param}) {
     try {
-      EasyRouteParam easyRouteParam = EasyRouteParam(params);
-      final Type pageClass = _routeMap[url];
-      if(pageClass == null) {
+      final Type pageClass = _routeMap[url].clazz;
+      if (pageClass == null) {
         return null;
       }
-      final dynamic widget = _createInstance(pageClass, easyRouteParam);
-      return widget;
-    }
-    catch(e) {
+      final bool hasParam = _routeMap[url].hasParam;
+      return _createInstance(pageClass, hasParam, param);
+    } catch (e) {
+      print(e.toString());
       return null;
     }
   }
 
-  dynamic _createInstance(Type clazz, EasyRouteParam easyRouteParam) {
+  dynamic _createInstance(Type clazz, bool hasParam, Map<String, dynamic> param) {
     {{{classInstance}}}
   }
+}
+
+class Pair<E, F> {
+  E clazz;
+  F hasParam;
+
+  Pair(this.clazz, this.hasParam);
 }
 """;

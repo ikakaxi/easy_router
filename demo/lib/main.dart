@@ -28,9 +28,9 @@ class MainPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            _getButton(context, "pageA", {"key": "a"}, "跳转到页面A"),
-            _getButton(context, "pageB", {"key": "b"}, "跳转到页面B"),
-            _getButton(context, "pageC", {"key": "c"}, "跳转到页面C"),
+            _getButton(context, "pageA", "跳转到页面A", param: {"key": "a"}),
+            _getButton(context, "pageB", "跳转到页面B"),
+            _getButton(context, "pageC", "跳转到不存在的页面"),
           ],
         ),
       ),
@@ -40,18 +40,12 @@ class MainPage extends StatelessWidget {
   Widget _getButton(
     BuildContext context,
     String url,
+    String text, {
     Map<String, dynamic> param,
-    String text,
-  ) {
+  }) {
     return RaisedButton(
       onPressed: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return Router.instance.getWidget(url, param);
-            },
-          ),
-        );
+        Router.instance.go(context, url, param: param);
       },
       child: Text(text),
     );

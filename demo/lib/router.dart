@@ -2,11 +2,11 @@
 /// author: liuhc
 import 'package:easy_router/easy_router.dart' show EasyRouterAnnotation;
 import 'package:flutter/material.dart';
+
 import 'router.g.dart';
 
 @EasyRouterAnnotation()
 class Router {
-
   static Router get instance => _getInstance();
   static Router _instance;
 
@@ -21,11 +21,19 @@ class Router {
     return _instance;
   }
 
-  Widget getWidget(String url, Map<String, dynamic> params) {
-    Widget widget = EasyRouter.instance.router(url, params);
-    return widget ?? NotFoundPage();
+  Widget getWidget(String url, {Map<String, dynamic> param}) {
+    return EasyRouter.instance.getWidget(url, param: param) ?? NotFoundPage();
   }
 
+  void go(BuildContext context, String url, {Map<String, dynamic> param}) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return getWidget(url, param: param);
+        },
+      ),
+    );
+  }
 }
 
 class NotFoundPage extends StatelessWidget {

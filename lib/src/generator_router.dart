@@ -18,7 +18,9 @@ class EasyRouterGenerator extends GeneratorForAnnotation<EasyRouterAnnotation> {
     return render(codeTemplate, <String, dynamic>{
       'imports': EasyRoutePathGenerator.importList.map((item) => {'path': item}).toList(),
       'classInstance': EasyRoutePathGenerator.classInstanceContent,
-      'routeMap': EasyRoutePathGenerator.routeMap.toString()
+      'routeMap': EasyRoutePathGenerator.routeMap
+          .map((String key, Pair<dynamic, bool> value) => MapEntry(key, "Pair(${value.clazz},${value.hasParam})"))
+          .toString()
     });
   }
 }

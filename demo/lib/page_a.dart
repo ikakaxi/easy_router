@@ -1,9 +1,10 @@
 /// description: test page A
 /// author: liuhc
 import 'package:flutter/material.dart';
+
 import 'package:easy_router/easy_router.dart';
 
-@EasyRoutePathAnnotation("pageA")
+@EasyRoutePathAnnotation("pageA", true)
 class PageA extends StatelessWidget {
   final EasyRouteParam param;
 

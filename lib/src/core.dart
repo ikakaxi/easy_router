@@ -4,8 +4,9 @@
 /// Define page routing annotations
 class EasyRoutePathAnnotation {
   final String url;
+  final bool hasParam;
 
-  const EasyRoutePathAnnotation(this.url);
+  const EasyRoutePathAnnotation(this.url, this.hasParam);
 }
 
 /// 每个页面都必须添加一个接受此参数的构造函数
