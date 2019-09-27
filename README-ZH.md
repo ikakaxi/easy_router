@@ -2,7 +2,7 @@ Language: [English](README.md) | [中文简体](README-ZH.md)
 
 # easy_router
 
-[![Pub](https://img.shields.io/pub/v/easy_router.svg?style=flat)](https://pub.flutter-io.cn/packages/easy_router) ![support](https://img.shields.io/badge/platform-flutter-ff69b4.svg?style=flat)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/LICENSE) [![Pub](https://img.shields.io/pub/v/easy_router.svg?style=flat)](https://pub.flutter-io.cn/packages/easy_router) ![support](https://img.shields.io/badge/platform-flutter-ff69b4.svg?style=flat)
 
 一个简单的Flutter页面跳转路由器
 
