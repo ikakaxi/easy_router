@@ -2,7 +2,7 @@ Language: [English](README.md) | [中文简体](README-ZH.md)
 
 # easy_router
 
-[![Pub](https://img.shields.io/pub/v/dio.svg?style=flat-square)](https://pub.dartlang.org/packages/easy_router)[![support](https://img.shields.io/badge/platform-flutter-ff69b4.svg?style=flat-square)](https://github.com/flutterchina/dio)
+[![Pub](https://img.shields.io/pub/v/easy_router.svg?style=flat-square)](https://pub.dartlang.org/packages/easy_router)[![support](https://img.shields.io/badge/platform-flutter-ff69b4.svg?style=flat-square)](https://github.com/flutterchina/dio)
 
 A Simple Flutter Page Jump Router
 
