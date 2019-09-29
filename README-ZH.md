@@ -12,7 +12,7 @@ Language: [English](README.md) | [中文简体](README-ZH.md)
 
 ```yaml
 dependencies:
-  easy_router: 0.9.0  #latest version
+  easy_router: 0.9.4  #latest version
 ```
 
 
@@ -21,18 +21,8 @@ dependencies:
 #### 2.1. 添加 EasyRoutePathAnnotation 注解
 
 ```dart
-@EasyRoutePathAnnotation("pageA")
-class PageA extends StatelessWidget {
-    //TODO
-}
-```
-
-
-
-#### 2.2. easy_router会调用页面的构造器并传入EasyRouteParams参数，所以每个page都必须有一个这样的构造器
-
-```dart
-@EasyRoutePathAnnotation("pageA")
+//true代表需要参数，必须添加传递EasyRouteParam参数的构造器
+@EasyRoutePathAnnotation("pageA", true)
 class PageA extends StatelessWidget {
   final EasyRouteParam param;
 
@@ -51,11 +41,28 @@ class PageA extends StatelessWidget {
     );
   }
 }
+
+//false代表不需要参数，不需要添加传递EasyRouteParam参数的构造器
+@EasyRoutePathAnnotation("pageB", false)
+class PageB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Page B"),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Text("no param"),
+      ),
+    );
+  }
+}
 ```
 
 
 
-#### 2.3. 添加路由器注解
+#### 2.2. 添加路由器注解
 
 使用@EasyRouterAnnotation()来注解自定义类,然后才能用命令生成相关代码，例如
 
@@ -68,7 +75,7 @@ class Router {
 
 
 
-#### 2.4. 生成代码
+#### 2.3. 生成代码
 
 cd到你的app模块，然后执行命令
 
@@ -84,21 +91,23 @@ flutter packages pub run build_runner clean
 
 
 
-#### 2.5. 显示页面
+#### 2.4. 显示页面
 
 ```dart
 onPressed: () {
     Navigator.of(context).push(
         MaterialPageRoute(
             builder: (context) {
-                return Router.instance.getWidget("pageA", {"key": "a"});
+                return EasyRouter.instance.getWidget("pageA", {"key": "a"});
+                //or
+                //return EasyRouter.instance.getWidget("pageB");
             },
         ),
     );
 }
 ```
 
-**推荐封装一下`Router`，参考demo中的`router.dart`**
+**推荐封装一下`EasyRouter`，参考demo中的`router.dart`**
 
 
 

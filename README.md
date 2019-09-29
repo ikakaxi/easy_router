@@ -12,7 +12,7 @@ A Simple Flutter Page Jump Router
 
 ```yaml
 dependencies:
-  easy_router: 0.9.0  #latest version
+  easy_router: 0.9.4  #latest version
 ```
 
 ### 2. How to use
@@ -20,23 +20,13 @@ dependencies:
 #### 2.1. Add EasyRoutePathAnnotation annotation
 
 ```dart
-@EasyRoutePathAnnotation("pageA")
+//True means that the parameter is required, and the constructor that passes the 
+//EasyRouteParam parameter must be added.
+@EasyRoutePathAnnotation("pageA", true)
 class PageA extends StatelessWidget {
-    //TODO
-}
-```
+  final EasyRouteParam param;
 
-
-
-#### 2.2. easy_router will call the constructor of the page and set the EasyRouteParams parameter, so each page must have a constructor like this
-
-```dart
-@EasyRoutePathAnnotation("pageA")
-class PageA extends StatelessWidget {
-    
-  final EasyRouteParam param;//here
-
-  PageA(this.param);//here
+  PageA(this.param);
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +41,29 @@ class PageA extends StatelessWidget {
     );
   }
 }
+
+//False means no parameters are required, no need to add a constructor that passes the 
+//EasyRouteParam parameter
+@EasyRoutePathAnnotation("pageB", false)
+class PageB extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Page B"),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Text("no param"),
+      ),
+    );
+  }
+}
 ```
 
 
 
-#### 2.3. Add router annotations
+#### 2.2. Add router annotations
 
 Use @EasyRouterAnnotation() to annotate the custom class before you can generate the relevant code with the command, for example
 
@@ -68,7 +76,7 @@ class Router {
 
 
 
-#### 2.4. Generate code
+#### 2.3. Generate code
 
 cd to your app module and execute the command
 
@@ -84,21 +92,23 @@ flutter packages pub run build_runner clean
 
 
 
-#### 2.5. Display page
+#### 2.4. Display page
 
 ```dart
 onPressed: () {
     Navigator.of(context).push(
         MaterialPageRoute(
             builder: (context) {
-                return Router.instance.getWidget("pageA", {"key": "a"});
+                return EasyRouter.instance.getWidget("pageA", {"key": "a"});
+                //or
+                //return EasyRouter.instance.getWidget("pageB");
             },
         ),
     );
 }
 ```
 
-**Recommend wrapping Router, refer to `router.dart` in demo**
+**Recommend wrapping `EasyRouter`, refer to `router.dart` in demo**
 
 
 
